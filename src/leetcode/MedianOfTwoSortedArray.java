@@ -24,44 +24,40 @@ The median is (2 + 3)/2 = 2.5
 public class MedianOfTwoSortedArray {
 public static void main(String[] args) {
 	Scanner scan = new Scanner(System.in);
-	int n = scan.nextInt();
-	int m = scan.nextInt();
-	int arr[] = new int[n];
-	int krr[] = new int[m];
+	int lengthArrA = scan.nextInt();
+	int lengthArrB = scan.nextInt();
+	int arrayA[] = new int[lengthArrA];
+	int arrayB[] = new int[lengthArrB];
 	int loop = 0;
-	while(loop<n){
-		arr[loop] = scan.nextInt();
+	while(loop<lengthArrA){
+		arrayA[loop] = scan.nextInt();
 		loop++;
 	}
 	loop=0;
-	while(loop<m){
-		krr[loop] = scan.nextInt();
+	while(loop<lengthArrB){
+		arrayB[loop] = scan.nextInt();
 		loop++;
 	}
 	
 	boolean isEven = false;
-	int halfPoint = (n+m)/2;
-	if((m+n)%2 == 0){
+	int halfPoint = (lengthArrA+lengthArrB)/2;
+	if((lengthArrB+lengthArrA)%2 == 0){
 		isEven = true;
 	}
-	int a = 0;
-	int b = 0;
+	int positionInArrayA = 0;
+	int positionInArrayB = 0;
 	int median = 0;
 	int preMedian = 0;
 	for(loop = 0;loop<=halfPoint;loop++){
-		
-		if(a==n){
-			preMedian = median;
-			median = krr[b++];
-		}else if(b==n){
-			preMedian = median;
-			median = arr[a++];
-		}else if(arr[a]>krr[b]){
-			preMedian = median;
-			median = krr[b++];
+		preMedian = median;
+		if(positionInArrayA==lengthArrA){
+			median = arrayB[positionInArrayB++];
+		}else if(positionInArrayB==lengthArrB){
+			median = arrayA[positionInArrayA++];
+		}else if(arrayA[positionInArrayA]>arrayB[positionInArrayB]){
+			median = arrayB[positionInArrayB++];
 		}else{
-			preMedian = median;
-			median = arr[a++];
+			median = arrayA[positionInArrayA++];
 		}
 	}
 	if(isEven){
