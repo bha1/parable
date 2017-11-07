@@ -1,4 +1,4 @@
-package intrfac.vs.clazz.intrfaces;
+package intrfac.vs.clazz.absclass;
 
 
 /**
